@@ -1,0 +1,9 @@
+# Java compile output
+*.class
+out/
+
+# OS/editor noise
+.DS_Store
+.idea/
+.vscode/
+
