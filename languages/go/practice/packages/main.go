@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"example.com/go-lab/module-basics/greeting"
+	"example.com/backend-notes/practice/packages/greeting"
 )
 
 func main() {

@@ -1,47 +1,25 @@
-# Backend Engineering Learning
+# Backend Notes
 
-A clean workspace for learning backend engineering one language at a time.
+Learn backend development by reading a short note, changing code, and debugging it.
 
-## Structure
+**Start with [Go backend learning](languages/go/README.md).** Go is the active track.
 
 ```text
-.
-├── backend-concepts/
-│   └── README.md
-└── languages/
-    ├── go/
-    │   ├── README.md
-    │   ├── notes/
-    │   │   └── roadmap.md
-    │   └── practice/
-    │       └── 01-basics/
-    │           └── hello_backend.go
-    └── java/
-        ├── README.md
-        ├── notes/
-        │   └── roadmap.md
-        └── practice/
-            └── 01-basics/
-                └── HelloBackend.java
+languages/go/       Short notes, small examples, one backend project
+languages/java/     Existing Java material
+backend-concepts/   Shared backend concepts
 ```
 
-## Idea
-
-- `backend-concepts/` keeps language-independent backend concepts.
-- `languages/java/` keeps Java-specific notes and practice.
-- `languages/go/` keeps Go-specific notes and practice.
-- No Gradle, Maven, framework, or deep folder structure at the start.
-- Use simple files first. Add tools only when they solve a real problem.
-
-## Start
+From this repository's root:
 
 ```bash
-cd languages/java/practice/01-basics
-javac HelloBackend.java
-java HelloBackend
+cd languages/go/practice
+go run ./basics
+go run ./packages
 ```
 
+Check all Go code from the repository root:
+
 ```bash
-cd languages/go/practice/01-basics
-go run hello_backend.go
+bash languages/go/check.sh
 ```

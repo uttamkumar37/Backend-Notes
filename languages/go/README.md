@@ -1,76 +1,96 @@
-# Go Backend & Cloud-Native Engineering Lab
+# Learn backend with Go
 
-A practical path from Java/Spring Boot experience to Go backend engineering, using a personal Apple Silicon Mac and fictional investor data.
-
-**Learning root:** `Backend-Notes/languages/go/`. Keep all Go notes, examples, projects, scripts, and infrastructure here. The master prompt's name, `go-cloud-native-engineering-lab`, is the curriculum name; this existing folder is its home. A nested Git repository is unnecessary.
-
-## Start here
-
-1. Continue with [Phase 1, lesson 2: modules, packages, imports, and workspaces](01-go-fundamentals/02-modules-packages/README.md).
-2. Refer back to [Session 0](notes/00-environment/README.md) and the [observed environment](notes/environment-assessment.md) when needed.
-3. Follow the [13-phase roadmap](notes/roadmap.md), one lesson at a time.
-4. Record your own understanding in [PROGRESS.md](PROGRESS.md).
-
-Run the safe inventory from any Terminal directory:
-
-```bash
-bash /Users/uttamkumar/Uttam-workspace/GitHubProject/Backend-Notes/languages/go/scripts/check-environment.sh
-```
-
-It reports versions and tool availability. It does not install software, change configuration, start a VM, or read application credentials. Its output and each underlying command are explained in Session 0.
-
-**Current checkpoint:** Lesson 1 is complete by your report. Lesson 2 is available with runnable code, dependency files, a workspace, automated tests, exercises, and debugging practice; its learner completion remains pending. Future lessons and Investor Platform implementations will be added as their lessons are reached. A roadmap entry describes planned work, not working software.
-
-## Reference notes
-
-| File | Purpose |
-| --- | --- |
-| [SETUP.md](SETUP.md) | Install and verify tools when their phase needs them; distinguish macOS, VM, and container processes |
-| [COMMANDS.md](COMMANDS.md) | Commands with working-directory and prerequisite information |
-| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Current setup fixes and a catalog of future office-style failure drills |
-| [PROGRESS.md](PROGRESS.md) | Theory, code, test evidence, debugging, confidence, and gaps |
-| [Lesson format](docs/lesson-format.md) | Teaching rules, code explanation standards, and phase assessments |
-| [Original master prompt](notes/MASTER-PROMPT.md) | Preserved requirements; this folder location overrides the suggested standalone repository |
-
-## Repository layout
+One reading order. Detailed notes in short sections. One project that grows with you.
 
 ```text
-languages/go/
-├── README.md
-├── SETUP.md
-├── COMMANDS.md
-├── TROUBLESHOOTING.md
-├── PROGRESS.md
-├── 01-go-fundamentals/
-│   ├── README.md
-│   ├── 01-first-program/       # Lesson 1: first module, program, and tests
-│   └── 02-modules-packages/    # Lesson 2: packages, dependency files, and workspace
-│       ├── go.mod
-│       ├── go.sum
-│       ├── main.go
-│       ├── main_test.go
-│       ├── greeting/           # Importable package and its test
-│       ├── workspace/go.work
-│       ├── README.md
-│       ├── EXERCISES.md
-│       ├── DEBUGGING.md
-│       └── INTERVIEW.md
-├── notes/
-│   ├── MASTER-PROMPT.md
-│   ├── roadmap.md
-│   ├── environment-assessment.md
-│   └── 00-environment/
-│       ├── README.md
-│       ├── EXERCISES.md
-│       ├── DEBUGGING.md
-│       └── INTERVIEW.md
-├── practice/
-│   └── 01-basics/hello_backend.go
-├── scripts/check-environment.sh
-└── docs/lesson-format.md
+go/
+├── README.md                 Start here; learning checklist
+├── 01-go-basics.md            Language, standard library, Java → Go
+├── 02-http-api.md             HTTP, clients, auth, contracts, Gin
+├── 03-databases-cache.md      SQL, transactions, pools, Valkey, outbox
+├── 04-concurrency.md          Channels, locks, workers, cancellation
+├── 05-production.md           Testing, telemetry, security, deployment
+├── SOURCES.md                 Official references and research choices
+├── practice/                  Two small programs; one Go module
+│   ├── basics/
+│   └── packages/greeting/
+├── project/                   Investor API; one flat Go module
+└── check.sh                   Check both modules
 ```
 
-The existing `hello_backend.go` is preserved. Lesson 1 explains an adaptation in its own tested module. Its presence and passing tests do not mean the learner has completed the fundamentals.
+## Follow this order
 
-The eventual platform will live at `projects/investor-platform/`, with infrastructure under `infrastructure/`. See the roadmap for planned phase folders and module boundaries. No office VPN, repositories, credentials, or paid cloud deployment is required.
+| Step | Read | Do before moving on |
+| --- | --- | --- |
+| 1 | [Go basics](01-go-basics.md) | Change a function, import a package, explain an error |
+| 2 | [HTTP APIs](02-http-api.md) | Run the project and complete create → get → update → delete |
+| 3 | [Databases and caching](03-databases-cache.md) | Implement persistence, then prove cache invalidation |
+| 4 | [Concurrency](04-concurrency.md) | Explain ownership; cancel work; run the race detector |
+| 5 | [Production habits](05-production.md) | Test a failure, trace startup, explain deployment and recovery |
 
+Each guide starts with an overview and continues into detailed reference sections. Read one section, try its example, and return for another topic later; completing a whole file is not a daily target.
+
+## Find a topic quickly
+
+| Need | Jump to |
+| --- | --- |
+| Understand slice/map ownership | [Slices](01-go-basics.md#arrays-slices-and-copying), [maps](01-go-basics.md#maps-and-sets) |
+| Understand pointers and interface nil | [Receivers](01-go-basics.md#pointers-receivers-and-mutation), [typed nil](01-go-basics.md#the-typed-nil-trap) |
+| Use errors and generics | [Errors](01-go-basics.md#error-design), [generics](01-go-basics.md#generics-and-constraints) |
+| Read modules and packages | [Tooling](01-go-basics.md#module-commands-and-tooling), [package design](01-go-basics.md#package-design-and-initialization) |
+| Build an HTTP boundary | [Layers](02-http-api.md#handler-service-and-repository), [clients](02-http-api.md#calling-another-http-service) |
+| Review API access and limits | [Authorization](02-http-api.md#authentication-and-authorization), [overload](02-http-api.md#rate-limiting-and-overload) |
+| Work with PostgreSQL | [Query example](03-databases-cache.md#a-context-aware-query), [transactions](03-databases-cache.md#transaction-lifecycle), [pools](03-databases-cache.md#pool-sizing-and-saturation) |
+| Understand cache correctness | [Keys](03-databases-cache.md#cache-keys-and-serialization), [stale data](03-databases-cache.md#stampedes-negative-caching-and-stale-data) |
+| Stop concurrent work safely | [Context](04-concurrency.md#context-trees-and-causes), [worker pool](04-concurrency.md#a-bounded-worker-pool) |
+| Investigate a hang/race | [Failure types](04-concurrency.md#races-deadlocks-and-leaks) |
+| Test and measure | [Tests](05-production.md#table-driven-tests), [benchmarks](05-production.md#benchmarks-and-profiles) |
+| Operate a service | [Logs](05-production.md#structured-logging-example), [containers](05-production.md#container-build-and-runtime), [troubleshooting](05-production.md#production-style-troubleshooting) |
+
+**Code available:** two practice programs and an in-memory HTTP project.
+Gin, PostgreSQL, Valkey, Vault, containers, and Kubernetes are explained as next steps; their integrations are exercises, not supplied implementations.
+
+The notes also contain complete standalone Go programs and test examples. Save a complete program as a temporary `main.go` and run `go run main.go`. Package/test examples belong in a separate empty scratch module initialized with `go mod init example.com/notes-scratch`; save tests as `something_test.go` and run `go test`. Do not paste several `main` functions into the project package. Database examples explicitly state their runtime prerequisites.
+
+## Start in five minutes
+
+Install Go using the [official instructions](https://go.dev/doc/install). The module files need Go **1.27 or newer**. Choose a supported patched release; check [release history](https://go.dev/doc/devel/release) when installing. One editor and a terminal are enough to begin.
+
+From the repository root:
+
+```bash
+cd languages/go/practice
+go run ./basics
+go run ./packages
+go test ./...
+```
+
+The programs print `Learning Go for backend engineering.` plus a next-step line, then `Welcome, Asha.`. Tests should report `ok` for three packages. Next, open [the project guide](project/README.md).
+
+## Learn a little, then prove it
+
+For each 45–90 minute session: read one section, change one behavior, run its tests, then explain what failed and why. Next session, rebuild that small change from memory.
+
+**Your checkpoint:** you previously reported the first program complete. Package/module practice remains pending. This restructuring does not mark new skills complete.
+
+- [x] First program — completed by your earlier report
+- [ ] Packages and modules — trace the import; change the greeting
+- [ ] Values, slices, structs, pointers, interfaces, errors
+- [ ] HTTP CRUD and input validation
+- [ ] PostgreSQL and transactions
+- [ ] Cache hits, invalidation, and fallback
+- [ ] Cancellation, synchronization, and shutdown
+- [ ] Tests, debugging, and deployment
+
+Mark a topic complete when you can **build it, explain it, and repair a failure** without copying the solution.
+
+## Check everything
+
+From the repository root:
+
+```bash
+bash languages/go/check.sh
+bash languages/go/check.sh race
+```
+
+Checks formatting, vet, tests, builds, and module-cache integrity. Race mode needs a supported C toolchain; on macOS, use Apple Command Line Tools. The script installs nothing and starts no infrastructure. Run `go test ./...` inside a module; the enclosing repository has no root Go module.

@@ -27,11 +27,11 @@ languages/
         HelloBackend.java
   go/
     README.md
-    notes/
-      roadmap.md
+    01-go-basics.md ... 05-production.md
+    SOURCES.md
     practice/
-      01-basics/
-        hello_backend.go
+    project/
+    check.sh
 ```
 
 ## Development Style
@@ -62,16 +62,19 @@ java HelloBackend
 
 ## Go Rules
 
-- Use plain Go files for now.
-- Run Go examples with `go run`.
-- Do not add `go.mod`, frameworks, or web server structure unless explicitly requested.
-- Keep Go practice files easy to read and modify.
+- Keep Go explanations clear and sections short; cover topics in depth within the existing guides.
+- Use the existing `practice/` and flat `project/` modules.
+- Keep the five numbered notes as the main reading order.
+- Put exercises and debugging beside the relevant explanation; do not recreate separate per-topic README, EXERCISES, INTERVIEW, or DEBUGGING files.
+- Add frameworks and infrastructure when their learning exercise needs them.
+- Keep learner completion separate from supplied material and passing tests.
 
 Example:
 
 ```bash
-cd languages/go/practice/01-basics
-go run hello_backend.go
+cd languages/go/practice
+go run ./basics
+go run ./packages
 ```
 
 ## Learning Content Rules
